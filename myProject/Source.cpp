@@ -1,5 +1,9 @@
 #include <iostream>
 
+class ticket {
+
+};
+
 int main() {
-	std::cout << "HELLO WORLD";
+	
 }
