@@ -23,7 +23,29 @@ public:
 		}
 		this->maxSeats = nrSeats;
 	}
+
+
+
+
 };
+
+class eventDetails {
+	int date;
+	int time;
+	char* name;
+
+public:
+
+};
+
+class Ticket {
+	int id;
+
+public:
+
+};
+
+
 
 int main() {
 	
