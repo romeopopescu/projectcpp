@@ -52,7 +52,13 @@ public:
 		return this->name;
 	}
 
-	
+	void printEventLocation() {
+
+		cout << "Name of location: " << this->getName() << endl;
+		cout << "Number of seats: " << this->getMaxSeats() << endl;
+		cout << "Number of zones: " << this->getZones() << endl;
+		
+	}
 
 
 
@@ -116,12 +122,18 @@ public:
 		return this->eventType;
 	}
 
+	void printEventDetails() {
+		cout << "Type of event: " << this->getType() << endl;
+		cout << "Date of event: " << this->getDate() << endl;
+		cout << "Time of event: " << this->getTime() << endl;
+		
+	}
 
 };
 
 class Ticket {
 	int id;
-
+	double price;
 public:
 
 };
@@ -129,14 +141,14 @@ public:
 
 
 int main() {
-	
-	EventLocation fotbal(100, 3, "Arena Nationala");
+	EventLocation footballLocation(10000, 3, "Arena Nationala");
 
-	cout << fotbal.getName();
+	EventDetails footballDetails("10/11/2001", "18:00", "Football Match");
 
-	EventDetails fotbalDetails("10/11/2001", "18:00", "Football Match");
+	footballDetails.printEventDetails();
+	footballLocation.printEventLocation();
 
-	cout << endl << fotbalDetails.getType();
+
 	
 
 }
