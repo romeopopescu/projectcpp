@@ -2,19 +2,23 @@
 
 using namespace std;
 
-class EventLocation {
+class EventSeats {
 	int maxSeats;
-	int zones;
-	string name;
-	
+	string seatType;
+	char row;
+	int seatNumber;
 
 public:
 
-	//Default constructor
-	EventLocation(int maxSeats1, int zones1, const string nameLoc) {
+	EventSeats() {
+
+	}
+
+	EventSeats(int maxSeats1, string type, char row1, int seatNumber1) {
 		this->setMaxSeats(maxSeats1);
-		this->setZones(zones1);
-		this->setName(nameLoc);
+		this->setSeatType(type);
+		this->setRow(row1);
+		this->setSeatNumber(seatNumber1);
 	}
 
 	//Setters
@@ -25,62 +29,89 @@ public:
 		this->maxSeats = nrSeats;
 	}
 
-	void setZones(int nrZones) {
-		if (nrZones < 0) {
-			throw exception("Negative number of rows");
+	void setSeatType(string seat) {
+		if (seat.length() < 0) {
+			throw exception("Invalid Seat Type");
 		}
-		this->zones = nrZones;
+		this->seatType = seat;
+	}
+
+	void setRow(char row1) {
+		if (row1 == NULL) {
+			throw exception("Invalid Row");
+		}
+		this->row = row1;
+	}
+	void setSeatNumber(int seatNumber1) {
+		if (seatNumber1 < 0) {
+			throw exception("Invalid Seat Number");
+		}
+		this->seatNumber = seatNumber1;
 	}
 	
-	void setName(const string nameLoc) {
-		if (nameLoc.length() < 3) {
-			throw exception("Location too short");
-		}
-		this->name = nameLoc;
-	}
+	
 
 	//Getters
 	int getMaxSeats() {
 		return this->maxSeats;
 	}
 
-	int getZones() {
-		return this->zones;
+	string getType() {
+		return this->seatType;
 	}
 
-	string getName() {
-		return this->name;
+	char getRow() {
+		return this->row;
+	}
+
+	int getSeatNumber() {
+		return this->seatNumber;
 	}
 
 	void printEventLocation() {
 
-		cout << "Name of location: " << this->getName() << endl;
 		cout << "Number of seats: " << this->getMaxSeats() << endl;
-		cout << "Number of zones: " << this->getZones() << endl;
 		
 	}
-
-
-
-
 };
 
 class EventDetails {
+	string name;
+	string location;
 	string date;
 	string time;
-	string eventType;
+	int duration;
 
 public:
 
-	//Default constructor
-	EventDetails(string date, string time, string eventType) {
+	EventDetails() {
+
+	}
+
+	EventDetails(string name, string location, string date, string time, int duration) {
+		this->setName(name);
+		this->setLocation(location);
 		this->setDate(date);
 		this->setTime(time);
-		this->setEventType(eventType);
+		this->setDuration(duration);
 	}
 
 
 	//Setters
+	void setName(string name1) {
+		if (name1.length() < 3 || name1.length() > 30) {
+			throw exception("Invalid Name");
+		}
+		this->name = name1;
+	}
+
+	void setLocation(string location1) {
+		if (location1.length() < 3 || location1.length() > 30) {
+			throw exception("Invalid Location");
+		}
+		this->location = location1;
+	}
+
 	void setDate(string date1) {
 		if (date1.length() != 10) {
 			throw exception("Date format: dd/mm/yyyy");
@@ -95,21 +126,22 @@ public:
 		this->time = time1;
 	}
 
-	void setEventType(const string type) {
-		
-		string type1 = type;
-		
-		for (int i = 0; i < type.length(); i++) {
-			type1[i] = toupper(type[i]);
+	void setDuration(int duration1) {
+		if (duration1 < 1) {
+			throw exception("Invalid duration");
 		}
-		
-		if (type1 != "MOVIE" && type1 != "FOOTBALL MATCH") {
-			throw exception("Available event types: movie and football match");
-		}
-		this->eventType = type;
+		this->duration = duration1;
 	}
 
 	//Getters
+	string getName() {
+		return this->name;
+	}
+
+	string getLocation() {
+		return this->location;
+	}
+
 	string getDate() {
 		return this->date;
 	}
@@ -118,12 +150,12 @@ public:
 		return this->time;
 	}
 
-	string getType() {
-		return this->eventType;
+	int getDuration() {
+		return this->duration;
 	}
 
 	void printEventDetails() {
-		cout << "Type of event: " << this->getType() << endl;
+		cout << "Name of event: " << this->getName() << endl;
 		cout << "Date of event: " << this->getDate() << endl;
 		cout << "Time of event: " << this->getTime() << endl;
 		
@@ -132,23 +164,66 @@ public:
 };
 
 class Ticket {
-	int id;
+	const int id;
 	double price;
-public:
+	int quantity;
+	string customerName;
+	string eventName;
 
+public:
+	Ticket() : id(0) {
+
+	}
+	Ticket(const int id1, double price1, int quantity, string customer, string event) : id(id1) {
+
+	}
+
+	//Setters
+	void setId(int id1) {
+		if (id < 0) {
+			throw exception("Invalid Id");
+		}
+	}
+
+	void setPrice(double price1) {
+		if (price1 < 0) {
+			throw exception("Invalid Price");
+		}
+		this->price = price1;
+	}
+
+	void setQuantity(int quantity1) {
+		if (quantity1 < 1) {
+			throw exception("Invalid Quantity");
+		}
+		this->quantity = quantity1;
+	}
+
+	void setCustomerName(string name) {
+		if (name.length() < 2) {
+			throw exception("Invalid Name");
+		}
+		this->customerName = name;
+	}
+
+	void setEventName(string name) {
+		if (name.length() < 2) {
+			throw exception("Invalid Name");
+		}
+		this->eventName = name;
+	}
+
+	//Getters
+	
+	
 };
 
 
 
 int main() {
-	EventLocation footballLocation(10000, 3, "Arena Nationala");
-
-	EventDetails footballDetails("10/11/2001", "18:00", "Football Match");
-
-	footballDetails.printEventDetails();
-	footballLocation.printEventLocation();
 
 
 	
+
 
 }
