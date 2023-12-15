@@ -75,6 +75,15 @@ public:
 	}
 };
 
+ostream& operator<<(ostream& console, EventSeats& s) {
+	console << "Seat type: " << s.getType() << endl;
+	console << "Available seats: " << s.getMaxSeats() << endl;
+
+	return console;
+
+}
+
+
 class EventDetails {
 	string name;
 	string location;
@@ -154,14 +163,17 @@ public:
 		return this->duration;
 	}
 
-	void printEventDetails() {
-		cout << "Name of event: " << this->getName() << endl;
-		cout << "Date of event: " << this->getDate() << endl;
-		cout << "Time of event: " << this->getTime() << endl;
-		
-	}
-
 };
+
+ostream& operator<<(ostream& console, EventDetails& e) {
+	console << "Event Name: " << e.getName() << endl;
+	console << "Location: " << e.getLocation() << endl;
+	console << "Date: " << e.getDate() << endl;
+	console << "Time: " << e.getTime() << endl;
+	console << "Duration: " << e.getDuration() << endl;
+
+	return console;
+}
 
 class Ticket {
 	const int id;
@@ -214,16 +226,99 @@ public:
 	}
 
 	//Getters
-	
+	int getId() {
+		return this->id;
+	}
+
+	double getPrice() {
+		return this->price;
+	}
+
+	int getQuantity() {
+		return this->quantity;
+	}
+
+	int getFullPrice() {
+		return this->price * this->quantity;
+	}
+
+	string getCustomerName() {
+		return this->customerName;
+	}
+
+	string getEventName() {
+		return this->eventName;
+	}
+
+	friend void operator>>(istream& console, Ticket& t);
 	
 };
 
+ostream& operator<<(ostream& console, Ticket& t) {
+	console << "Id: " << t.getId() << endl;
+	console << "Full price: " << t.getFullPrice() << endl;
+	console << "Quantity: " << t.getQuantity() << endl;
+	console << "Name: " << t.getCustomerName() << endl;
+	console << "Event: " << t.getEventName() << endl;
+
+	return console;
+}
+
+void operator>>(istream& console, Ticket& t) {
+	cout << "Price: ";
+	double price;
+	console >> price;
+	t.price = price;
+
+	cout << endl << "Quantity: ";
+	int quantity;
+	console >> quantity;
+	t.quantity = quantity;
+
+	cout << endl << "Name: ";
+	string name;
+	console >> name;
+	t.customerName = name;
+
+	cout << endl << "Event: ";
+	string eventName;
+	console >> eventName;
+	t.eventName = eventName;
+
+}
 
 
 int main() {
 
-
+	cout << "**** WELCOME ****" << endl;
+	cout << "Press: " << endl;
+	cout << "0 -> Customer \n";
+	cout << "1 -> Admin \n";
+	cout << "2 -> Quit \n";
+	int step;
+	cin >> step;
 	
+	switch (step)
+	{
+	case 0:
+	{
+		cout << "cust";
+		break;
+	}
+	case 1: 
+	{
+		cout << "admin" << endl;
+		Ticket t;
+		cin >> t;
+		cout << t;
+		break;
+	}
+	case 2:
+	{
+		break;
+	}
+		
+	}
 
 
 }
