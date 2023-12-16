@@ -1,6 +1,9 @@
 #include <iostream>
+#include <ctime>
 
 using namespace std;
+
+int random_id = rand();
 
 class EventSeats {
 	int maxSeats;
@@ -176,18 +179,21 @@ ostream& operator<<(ostream& console, EventDetails& e) {
 }
 
 class Ticket {
-	const int id;
+	const int id = 0;
 	double price;
 	int quantity;
 	string customerName;
 	string eventName;
 
 public:
-	Ticket() : id(0) {
+	Ticket() : id(random_id) {
 
 	}
-	Ticket(const int id1, double price1, int quantity, string customer, string event) : id(id1) {
-
+	Ticket(const int id1, double price1, int quantity, string customer, string event) : id(random_id) {
+		this->setPrice(price1);
+		this->setQuantity(quantity);
+		this->setCustomerName(customer);
+		this->setEventName(event);
 	}
 
 	//Setters
@@ -270,17 +276,17 @@ void operator>>(istream& console, Ticket& t) {
 	console >> price;
 	t.price = price;
 
-	cout << endl << "Quantity: ";
+	cout << "Quantity: ";
 	int quantity;
 	console >> quantity;
 	t.quantity = quantity;
 
-	cout << endl << "Name: ";
+	cout << "Name: ";
 	string name;
 	console >> name;
 	t.customerName = name;
 
-	cout << endl << "Event: ";
+	cout << "Event: ";
 	string eventName;
 	console >> eventName;
 	t.eventName = eventName;
@@ -289,36 +295,43 @@ void operator>>(istream& console, Ticket& t) {
 
 
 int main() {
+	srand(time(nullptr));
 
-	cout << "**** WELCOME ****" << endl;
-	cout << "Press: " << endl;
-	cout << "0 -> Customer \n";
-	cout << "1 -> Admin \n";
-	cout << "2 -> Quit \n";
+
 	int step;
-	cin >> step;
 	
-	switch (step)
-	{
-	case 0:
-	{
-		cout << "cust";
-		break;
-	}
-	case 1: 
-	{
-		cout << "admin" << endl;
-		Ticket t;
-		cin >> t;
-		cout << t;
-		break;
-	}
-	case 2:
-	{
-		break;
-	}
-		
-	}
 
+	do {
+		cout << "**** WELCOME ****" << endl;
+		cout << "Press: " << endl;
+		cout << "0 -> Customer \n";
+		cout << "1 -> Admin \n";
+		cout << "2 -> Quit \n";
+		cin >> step;
 
+		switch (step)
+		{
+		case 0:
+		{
+			cout << "cust";
+
+			break;
+		}
+		case 1:
+		{
+			cout << "admin" << endl;
+			Ticket t;
+			cin >> t;
+			cout << t;
+			break;
+		}
+		case 2:
+		{
+			return 0;
+		}
+
+		}
+
+	} while (step != 2);
 }
+	
