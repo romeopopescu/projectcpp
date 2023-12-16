@@ -76,6 +76,27 @@ public:
 		cout << "Number of seats: " << this->getMaxSeats() << endl;
 		
 	}
+
+	void operator=(const EventSeats source) {
+		this->maxSeats = source.maxSeats;
+		this->row = source.row;
+		this->seatNumber = source.seatNumber;
+		this->seatType = source.seatType;
+	}
+
+	bool operator!() {
+		if (this->seatNumber) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	//copy constructor
+	EventSeats(const EventSeats& object) {
+		this->seatNumber = object.seatNumber;
+	}
 };
 
 ostream& operator<<(ostream& console, EventSeats& s) {
