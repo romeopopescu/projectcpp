@@ -4,8 +4,9 @@
 
 using namespace std;
 
-#include "header.h"
-
+#include "EventSeats.h"
+#include "EventDetails.h"
+#include "Ticket.h"
 
 
 int main() {
