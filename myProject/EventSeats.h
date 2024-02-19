@@ -8,13 +8,13 @@
 using namespace std;
 
 
-
+enum SeatType { STANDARD, VIP};
 
 class EventSeats {
 	int maxSeats;
-	string seatType;
 	char* row = nullptr;
 	int seatNumber;
+	SeatType seat;
 
 public:
 
@@ -22,9 +22,9 @@ public:
 
 	}
 
-	EventSeats(int maxSeats1, string type, char* row1, int seatNumber1) {
+	EventSeats(int maxSeats1, SeatType seat1, char* row1, int seatNumber1) {
 		this->setMaxSeats(maxSeats1);
-		this->setSeatType(type);
+		
 		this->setRow(row1);
 		this->setSeatNumber(seatNumber1);
 	}
@@ -37,11 +37,21 @@ public:
 		this->maxSeats = nrSeats;
 	}
 
-	void setSeatType(string seat) {
-		if (seat.length() < 0) {
-			throw ("Invalid Seat Type");
+	string getSeatName() {
+		switch (this->seat)
+		{
+		case VIP:
+			return "VIP";
+			break;
+		
+		case STANDARD:
+			return "STANDARD";
+			break;
 		}
-		this->seatType = seat;
+	}
+
+	SeatType getSeatType() {
+		return this->seat;
 	}
 
 	void setRow(char* row1) {
@@ -64,9 +74,6 @@ public:
 		return this->maxSeats;
 	}
 
-	string getType() {
-		return this->seatType;
-	}
 
 	char* getRow() {
 		return this->row;
@@ -77,7 +84,7 @@ public:
 	}
 
 	void printEventLocation() {
-		cout << "Type of seat: " << this->getType() << endl;
+		cout << "Type of seat: " << this->getSeatName() << endl;
 		cout << "Number of seats: " << this->getMaxSeats() << endl;
 		cout << "Row: ";
 		
@@ -87,7 +94,7 @@ public:
 		this->maxSeats = source.maxSeats;
 		this->row = source.row;
 		this->seatNumber = source.seatNumber;
-		this->seatType = source.seatType;
+		this->seat = source.seat;
 	}
 
 	bool operator!() {
@@ -106,7 +113,7 @@ public:
 };
 
 ostream& operator<<(ostream& console, EventSeats& s) {
-	console << "Seat type: " << s.getType() << endl;
+	console << "Seat type: " << s.getSeatType() << endl;
 	console << "Available seats: " << s.getMaxSeats() << endl;
 
 	return console;

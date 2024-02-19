@@ -14,7 +14,7 @@ int main() {
 
 	int step, step1;
 	EventDetails t;
-	
+	Ticket a;
 
 	do {
 		cout << "**** HOME PAGE ****" << endl;
@@ -41,8 +41,31 @@ int main() {
 				{
 					case 0:
 					{	
-						cout << "Events:" << endl;
-						cout << t;
+						cout << "Choose event:" << endl << endl;
+						cout << "1. " << t.getName() << endl;
+
+						int step2;
+						
+
+						do {
+							cin >> step2;
+							switch (step2) {
+								case 0:
+								{
+									break;
+								}
+								case 1:
+								{
+									cout << t;
+									break;
+								}
+								case 2:
+								{
+									break;
+								}
+							}
+						}while (step2 != 2);
+
 						break;
 					}
 
