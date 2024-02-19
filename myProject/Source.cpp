@@ -17,11 +17,12 @@ int main() {
 	Ticket a;
 
 	do {
-		cout << "**** HOME PAGE ****" << endl;
-		cout << "Press: " << endl;
-		cout << "0 -> Customer \n";
-		cout << "1 -> Admin \n";
-		cout << "2 -> Quit \n";
+		cout << "\t\t\t**** HOME PAGE ****" << endl;
+		cout << "\t\t\tPress: " << endl;
+		cout << "\t\t\t0 -> Customer \n";
+		cout << "\t\t\t1 -> Admin \n";
+		cout << "\t\t\t2 -> Quit \n";
+		cout << "\t\t\t";
 		cin >> step;
 
 		switch (step)
@@ -29,12 +30,13 @@ int main() {
 		case 0:
 		{	
 			do 
-			{
-				cout << "**** BUY TICKETS ****" << endl;
-				cout << "Press: " << endl;
-				cout << "0 -> Buy ticket \n";
-				cout << "1 -> Verify ticket \n";
-				cout << "2 -> Quit \n";
+			{	
+				cout << "\t\t\t**** BUY TICKETS ****" << endl;
+				cout << "\t\t\tPress: " << endl;
+				cout << "\t\t\t0 -> Buy ticket \n";
+				cout << "\t\t\t1 -> Verify ticket \n";
+				cout << "\t\t\t2 -> Quit \n";
+				cout << "\t\t\t";
 				cin >> step1;
 
 				switch (step1)
